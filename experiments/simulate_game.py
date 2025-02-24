@@ -172,18 +172,18 @@ def main():
             logger,
             f"⌛ Instantiating super exploiter agents for {super_exploiter_powers}",
         )
-        agent_super_exploiter: Agent = model_name_to_agent(
-            "exploiter",
-            llm_model="gpt-4-0613",
-            power=power_name,
-            unit_threshold=wandb.config.unit_threshold,
-            center_threshold=wandb.config.center_threshold,
+        for power_name in super_exploiter_powers:
+            agent_super_exploiter: Agent = model_name_to_agent(
+                "exploiter",
+                llm_model=args.exploiter_model,
+                power=power_name,
+                unit_threshold=wandb.config.unit_threshold,
+                center_threshold=wandb.config.center_threshold,
             max_years=wandb.config.max_years,
             temperature=wandb.config.temperature,
-            top_p=wandb.config.top_p,
-            manual_orders_path=wandb.config.manual_orders_path,
-        )
-        for power_name in super_exploiter_powers:
+                top_p=wandb.config.top_p,
+                manual_orders_path=wandb.config.manual_orders_path,
+            )
             power_name_to_agent[power_name] = agent_super_exploiter
 
     # Initialize global counters
@@ -1192,7 +1192,7 @@ def parse_args():
         "--exploiter_model",
         dest="exploiter_model",
         type=str,
-        default="",
+        default="gpt-4o-mini",
         help="🦾 Separate model name (see --agent_model) to use for the exploiter (see --exploiter_prompt) if desired. If omitted, uses the --agent_model.",
     )
     parser.add_argument(
