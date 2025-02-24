@@ -7,9 +7,13 @@ import time
 
 import backoff
 from openai import OpenAI
-
-client = OpenAI()
 from openai import OpenAIError
+
+try:
+    client = OpenAI()
+except OpenAIError as exc:
+    print(f"OpenAI client error: {exc}. Setting client to None.")
+    client = None
 
 from transformers import AutoTokenizer, LlamaForCausalLM, BitsAndBytesConfig
 import torch
