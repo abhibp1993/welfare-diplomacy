@@ -70,7 +70,14 @@ def main():
 
     utils.set_seed(wandb.config.seed)
 
-    logging.basicConfig()
+
+    if not os.path.exists(wandb.config.output_folder):
+        os.makedirs(wandb.config.output_folder)
+    logging.basicConfig(
+        filename=os.path.join(
+            wandb.config.output_folder, f"game-{wandb.run.name}.log"
+        ),
+    )
     logger.setLevel(wandb.config.log_level)
 
     utils.log_info(logger, f"⌛ Instantiating game {wandb.config.map_name}")
@@ -1053,7 +1060,9 @@ def main():
     if wandb.config.save:
         if not os.path.exists(wandb.config.output_folder):
             os.makedirs(wandb.config.output_folder)
-        output_id = "debug" if wandb.config.disable_wandb else wandb.run.id
+
+        output_id = f"{wandb.run.name}"
+        # output_id = "debug" if wandb.config.disable_wandb else f"{wandb.run.name}_{wandb.run.id}"
         to_saved_game_format(
             game,
             output_path=os.path.join(
@@ -1087,7 +1096,7 @@ def parse_args():
         "--save",
         dest="save",
         action="store_true",
-        help="💾Save the game to disk (uses W&B run ID).",
+        help="💾Save the game to disk (uses W&B run ID & name).",
     )
     parser.add_argument("--seed", dest="seed", type=int, default=0, help="Random seed")
     parser.add_argument(
