@@ -29,12 +29,13 @@ from diplomacy.utils.game_phase_data import GamePhaseData
 LOGGER = logging.getLogger(__name__)
 RULES_TO_SKIP = ['SOLITAIRE', 'NO_DEADLINE', 'CD_DUMMIES', 'ALWAYS_WAIT', 'IGNORE_ERRORS']
 
-def to_saved_game_format(game, output_path=None, output_mode='a'):
+def to_saved_game_format(game, output_path=None, output_mode='a', indent=2):
     """ Converts a game to a standardized JSON format
 
         :param game: game to convert.
         :param output_path: Optional path to file. If set, the json.dumps() of the saved_game is written to that file.
         :param output_mode: Optional. The mode to use to write to the output_path (if provided). Defaults to 'a'
+        :param indent: Optional. Indent to use when creating JSON file. Defaults to 2.
         :return: A game in the standard format used to saved game, that can be converted to JSON for serialization
         :type game: diplomacy.engine.game.Game
         :type output_path: str | None, optional
@@ -61,7 +62,7 @@ def to_saved_game_format(game, output_path=None, output_mode='a'):
     # Writing to disk
     if output_path:
         with open(output_path, output_mode) as output_file:
-            output_file.write(json.dumps(saved_game) + '\n')
+            output_file.write(json.dumps(saved_game, indent=indent) + '\n')
 
     # Returning
     return saved_game
