@@ -232,5 +232,5 @@ if __name__ == '__main__':
     output_df = extract_locations(input_df)
 
     # Save to CSV
-    output_df.to_csv(csv_file_path / "5-light-haze-aggregate-msg-table.csv", index=False)
-    logger.success(f"Extracted locations updated in {csv_file_path / '5-light-haze-aggregate-msg-table.csv'}")
+    output_df.to_csv(csv_file_path / "5-light-haze-msg-table-locations.csv", index=False)
+    logger.success(f"Extracted locations updated in {csv_file_path / '5-light-haze-msg-table-locations.csv'}")
