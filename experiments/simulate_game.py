@@ -186,8 +186,8 @@ def main():
                 power=power_name,
                 unit_threshold=wandb.config.unit_threshold,
                 center_threshold=wandb.config.center_threshold,
-            max_years=wandb.config.max_years,
-            temperature=wandb.config.temperature,
+                max_years=wandb.config.max_years,
+                temperature=wandb.config.temperature,
                 top_p=wandb.config.top_p,
                 manual_orders_path=wandb.config.manual_orders_path,
             )
@@ -359,6 +359,8 @@ def main():
                     )
                     progress_bar_messages.update(1)
                     continue
+
+                # TODO: Split the try-except and code below
                 if game.no_press:
                     assert not agent_response.messages, agent_response.messages
                 phase_completion_times_sec_list.append(
@@ -1282,6 +1284,9 @@ def parse_args():
     )
 
     args = parser.parse_args()
+    if args.save is False:
+        if "y" in input("Do you want to save the game? (yes/no)").lower():
+            args.save = True
     return args
 
 
