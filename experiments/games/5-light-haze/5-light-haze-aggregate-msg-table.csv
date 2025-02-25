@@ -1,0 +1,208 @@
+phase,power1,power2,dialogue,locations
+W1910A,RUSSIA,FRANCE,"RUSSIA to FRANCE: I plan to build in Moscow this phase. I'm looking forward to maintaining stability as we head towards the conclusion of the game. 
+
+ RUSSIA to FRANCE: I will be building in Moscow this phase. I'm looking forward to keeping our lines of communication open as we finish the game. 
+
+ RUSSIA to FRANCE: I'll be disbanding my fleet in Sevastopol this phase to accumulate WP. I'm looking forward to maintaining our dialogue. 
+
+ RUSSIA to FRANCE: I will be building an army in Moscow and disbanding my fleet in Sevastopol. Let's ensure our communication stays open as we conclude the game.","['MOS', 'SEV']"
+W1910A,RUSSIA,AUSTRIA,"RUSSIA to AUSTRIA: Just a quick note to confirm I'm building in Moscow. Let's keep communication open as we approach the end. 
+
+ AUSTRIA to RUSSIA: Good to hear you’re building in Moscow. As the game winds down, let’s ensure our strategies align to maintain stability in the region. 
+
+ RUSSIA to AUSTRIA: Just confirming my plan to build in Moscow. I appreciate our communication and look forward to maintaining stability together. 
+
+ AUSTRIA to RUSSIA: I acknowledge your build in Moscow. It’s important we keep communication open to ensure our strategies align. 
+
+ AUSTRIA to RUSSIA: Good to hear you’re building in Moscow. I’m also building an army in Budapest to reinforce my position. Let’s ensure our strategies align to maintain stability in the region. 
+
+ RUSSIA to AUSTRIA: Just a quick note to confirm my disbandment in Sevastopol. I'm focused on maximizing WP this phase. 
+
+ AUSTRIA to RUSSIA: I'm building an army in Budapest this phase. Let's continue to ensure our strategies align for stability. 
+
+ RUSSIA to AUSTRIA: I'm building an army in Moscow and disbanding my fleet in Sevastopol this phase to maximize WP. Let's keep our lines of communication open.","['MOS', 'BUD', 'SEV']"
+W1910A,RUSSIA,GERMANY,"RUSSIA to GERMANY: I’m building an army in Moscow to maintain a presence in the region. I hope we can continue our cooperative dialogue. 
+
+ GERMANY to RUSSIA: Your plans for an army in Moscow sound good. I'm building an army in Berlin, which could help ensure stability in our region. Let’s keep our lines of communication open. 
+
+ RUSSIA to GERMANY: I plan to build an army in Moscow. I hope we can keep our dialogue open and ensure peace in our region. 
+
+ GERMANY to RUSSIA: I'm building an army in Berlin as well. It's great to hear you're maintaining your presence in Moscow. Let's keep our communication open. 
+
+ RUSSIA to GERMANY: I'm disbanding my fleet in Sevastopol to enhance my WP. Let's keep our communication open as we finalize our strategies. 
+
+ GERMANY to RUSSIA: I’m building an army in Berlin. Let's ensure we continue our dialogue to maintain peace in our region. 
+
+ GERMANY to RUSSIA: I’m building an army in Berlin as well. Let’s continue our dialogue to maintain peace and stability in our region. 
+
+ RUSSIA to GERMANY: I plan to build in Moscow while disbanding my fleet in Sevastopol to enhance my WP. I'm looking forward to maintaining our dialogue.","['MOS', 'BER', 'SEV']"
+W1910A,RUSSIA,TURKEY,"RUSSIA to TURKEY: I plan to build an army in Moscow to reinforce my position. I appreciate our collaboration and hope we can continue our alignment moving forward. 
+
+ TURKEY to RUSSIA: Thanks for the collaboration! I hope our mutual alignment continues to serve us well as we approach the game's conclusion. 
+
+ RUSSIA to TURKEY: I'm going to build an army in Moscow. Let's continue to collaborate closely as we approach the end. 
+
+ TURKEY to RUSSIA: I hope our alignment continues to serve us well as we approach the end. I'm disbanding my fleet in the Aegean to accumulate more WP. 
+
+ RUSSIA to TURKEY: I plan to disband my fleet in Sevastopol to focus on accumulating WP. Let's keep collaborating as we approach the game's end. 
+
+ TURKEY to RUSSIA: I plan to disband my fleet in the Aegean to enhance my WP this winter. Let's ensure our collaboration continues as we approach the end. 
+
+ RUSSIA to TURKEY: I'll be building an army in Moscow and disbanding my fleet in Sevastopol to focus on accumulating WP. Let's continue our collaboration. 
+
+ TURKEY to RUSSIA: I plan to build a fleet in Smyrna to bolster my Mediterranean presence. Let's keep our collaboration strong as we approach the game's conclusion.","['MOS', 'AEG', 'SEV', 'SMY']"
+W1910A,FRANCE,GERMANY,"GERMANY to FRANCE: I noticed your move to Belgium. I'm planning to build in Berlin to reinforce my position. Let's ensure we stay aligned as the game progresses. 
+
+ FRANCE to GERMANY: Thanks for your support in Berlin. I'm building in Marseilles to strengthen my Mediterranean position. Let’s keep communication open as we approach the final phase. 
+
+ FRANCE to GERMANY: I'm planning to disband my army in Belgium this phase to enhance my WP. Let's maintain open communication about our strategies as we approach the conclusion of the game. 
+
+ GERMANY to FRANCE: I'm planning to build in Berlin to reinforce my position. Let's stay aligned as we approach the conclusion of the game. 
+
+ GERMANY to FRANCE: I'll be building in Berlin to bolster my position. Let's keep communication open as we wrap things up. 
+
+ FRANCE to GERMANY: I'll be building an army in Marseilles this phase. I appreciate your support and hope to maintain our strong communication. 
+
+ GERMANY to FRANCE: I'll be building in Berlin to bolster my position. Let's keep communication open as we wrap things up and ensure our strategies remain aligned. 
+
+ FRANCE to GERMANY: I'm planning to disband my army in Belgium this phase to enhance my WP. Let's maintain open communication about our strategies as we approach the conclusion of the game.","['BEL', 'BER', 'MAR']"
+W1910A,FRANCE,ENGLAND,"ENGLAND to FRANCE: I see you're building in Marseilles. Let's ensure we both focus on stability as we head towards the end of the game. What are your thoughts on our alignment? 
+
+ FRANCE to ENGLAND: I appreciate our focus on stability as we approach the end of the game. I'm planning to build in Marseilles, which will help secure our positions. Let me know if you have any thoughts on further aligning our strategies. 
+
+ FRANCE to ENGLAND: I plan to disband my army in Belgium to maximize my Welfare Points. Let's ensure our strategies align as we approach the endgame. Do you have any thoughts on this? 
+
+ ENGLAND to FRANCE: I appreciate your focus on stability with your build in Marseilles. I’m building in Liverpool to maintain our North Sea presence. Let’s continue to coordinate as we near the end. 
+
+ FRANCE to ENGLAND: I plan to build an army in Marseilles to reinforce my position in the Mediterranean. Let’s keep our communication open as we head towards the endgame. 
+
+ ENGLAND to FRANCE: I appreciate your focus on stability with your build in Marseilles. I’m building in Liverpool to maintain our North Sea presence. Let’s continue to coordinate as we near the end. 
+
+ FRANCE to ENGLAND: I'm planning to disband my army in Belgium this phase to maximize my Welfare Points. Let's ensure our strategies align as we approach the endgame. Do you have any thoughts on this? 
+
+ ENGLAND to FRANCE: I appreciate your focus on stability with your build in Marseilles. I’m building in Liverpool to maintain our North Sea presence. Let’s continue to coordinate as we near the end.","['MAR', 'BEL', 'LVP', 'MED']"
+W1910A,FRANCE,TURKEY,"FRANCE to TURKEY: I see you’re focusing on the Aegean. I plan to build an army in Marseilles to ensure stability in our region. Let’s maintain strong communication as we navigate the endgame. 
+
+ FRANCE to TURKEY: I'll be disbanding my army in Belgium to maximize my Welfare Points. Let's continue to coordinate our efforts in the Mediterranean as we head toward the end. 
+
+ TURKEY to FRANCE: It's great to hear about your plans for stability in the Mediterranean. I will be disbanding my fleet in the Aegean this phase to focus on maximizing my WP. 
+
+ TURKEY to FRANCE: I’m disbanding my fleet in the Aegean this winter to maximize my Welfare Points. I appreciate our ongoing communication in the Mediterranean. 
+
+ FRANCE to TURKEY: I plan to build an army in Marseilles to ensure stability in our region. Let’s keep coordinating our efforts as we approach the end. 
+
+ FRANCE to TURKEY: I'll be disbanding my army in Belgium to maximize my Welfare Points. Let's continue to coordinate our efforts in the Mediterranean as we head toward the end. 
+
+ TURKEY to FRANCE: I'm building a fleet in Smyrna this winter to enhance my position in the Mediterranean. Let's maintain our strong communication.","['AEG', 'MAR', 'BEL', 'MEDITERRANEAN', 'SMY']"
+W1910A,FRANCE,ITALY,"ITALY to FRANCE: I’m reinforcing my position by building a fleet in Naples. Let’s keep our Mediterranean cooperation strong as we head toward the end. 
+
+ FRANCE to ITALY: It's great to see you're building in Naples. I plan to build an army in Marseilles to enhance our cooperation in the Mediterranean. Let’s continue to coordinate our efforts. 
+
+ FRANCE to ITALY: I will be disbanding my army in Belgium to focus on accumulating Welfare Points. It's important for us to keep our Mediterranean cooperation strong as we move forward. How are your plans shaping up? 
+
+ ITALY to FRANCE: I plan to build a fleet in Naples to strengthen our cooperation. It's important that we maintain our strong Mediterranean ties as we finish up. 
+
+ ITALY to FRANCE: I plan to build a fleet in Naples to strengthen our cooperation. It's important that we maintain our strong Mediterranean ties as we finish up. 
+
+ FRANCE to ITALY: I'm building an army in Marseilles to strengthen our Mediterranean cooperation. I look forward to aligning our strategies as we finish up. 
+
+ FRANCE to ITALY: I will be disbanding my army in Belgium to focus on accumulating Welfare Points. It's important for us to keep our Mediterranean cooperation strong as we move forward. How are your plans shaping up? 
+
+ ITALY to FRANCE: I’m building a fleet in Naples to support our Mediterranean strategies. Let’s ensure we maintain our cooperation as we head to the end.","['NAP', 'MAR', 'BEL', 'MEDITERRANEAN']"
+W1910A,AUSTRIA,GERMANY,"GERMANY to AUSTRIA: I appreciate our ongoing non-aggression pact. I'm looking to build an army in Berlin this winter. How do you see the dynamics developing as we approach the endgame? 
+
+ AUSTRIA to GERMANY: Thanks for confirming your build in Berlin. As we approach the end, I'm focusing on maximizing my Welfare Points. Let's ensure our non-aggression pact remains intact. 
+
+ GERMANY to AUSTRIA: Thanks for confirming our non-aggression pact. I'm building an army in Berlin this winter. How do you see the endgame shaping up for you? 
+
+ AUSTRIA to GERMANY: I appreciate our ongoing cooperation. Building in Budapest will help reinforce our stability in the region. Let’s keep our non-aggression pact intact. 
+
+ AUSTRIA to GERMANY: Thanks for confirming your build in Berlin. As we approach the end, I’m focusing on maximizing my Welfare Points by building an army in Budapest. Let’s ensure our non-aggression pact remains intact. 
+
+ GERMANY to AUSTRIA: I'm building an army in Berlin to reinforce my position. How do you see our non-aggression pact playing out as we approach the endgame? 
+
+ GERMANY to AUSTRIA: I appreciate our ongoing cooperation and am building an army in Berlin this phase to strengthen our position. How do you see our non-aggression pact playing out as we approach the endgame? 
+
+ AUSTRIA to GERMANY: I'm building an army in Budapest this phase to enhance my presence in the Balkans. I appreciate our continued cooperation.","['BER', 'BUD']"
+W1910A,AUSTRIA,TURKEY,"TURKEY to AUSTRIA: I appreciate your focus on accumulating WP. Let's continue to coordinate our efforts to ensure our positions remain stable. 
+
+ AUSTRIA to TURKEY: I appreciate your continued support in the Aegean. I'm building an army in Budapest to bolster our position. Let’s keep our communication open as we navigate the final stages. 
+
+ AUSTRIA to TURKEY: I’m building an army in Budapest to strengthen our position. Let’s continue to coordinate our efforts as we navigate the final stages. 
+
+ TURKEY to AUSTRIA: Let's keep the communication strong as we both focus on accumulating Welfare Points. I'm disbanding my fleet in the Aegean this winter to enhance my WP. 
+
+ AUSTRIA to TURKEY: I appreciate your continued support in the Aegean. I'm building an army in Budapest to bolster our position. Let’s keep our communication open as we navigate the final stages. 
+
+ TURKEY to AUSTRIA: I'm planning to disband my fleet in the Aegean this winter to maximize my WP. Let’s keep our coordination strong. 
+
+ AUSTRIA to TURKEY: I'm building an army in Budapest to strengthen our position in the region. Let's keep our communication open as we navigate these final stages. 
+
+ TURKEY to AUSTRIA: I'm focusing on building a fleet in Smyrna to enhance our Mediterranean strategy. Let's continue to coordinate our efforts.","['AEG', 'BUD', 'SMY']"
+W1910A,AUSTRIA,ITALY,"ITALY to AUSTRIA: I plan to build a fleet in Naples to strengthen our Mediterranean position. Let's keep discussing our coordination as we approach the endgame. 
+
+ AUSTRIA to ITALY: I see you're planning to build a fleet in Naples. Let's keep our coordination strong as we approach the endgame. I'm considering my options for the Winter adjustments. 
+
+ AUSTRIA to ITALY: I see your plans for a fleet in Naples. Let’s ensure our strategies align as we approach the endgame. 
+
+ ITALY to AUSTRIA: I'm building a fleet in Naples to enhance our Mediterranean cooperation. Let's keep coordinating as we head towards the endgame. 
+
+ ITALY to AUSTRIA: I plan to build a fleet in Naples to strengthen our Mediterranean position. Let's keep discussing our coordination as we approach the endgame. 
+
+ AUSTRIA to ITALY: I see you're planning to build a fleet in Naples. Let's keep our coordination strong as we approach the endgame. I’m considering building an army in Budapest for a stronger position. 
+
+ ITALY to AUSTRIA: As I build my fleet in Naples, let's ensure our strategies remain aligned. Your moves could impact our cooperation in the Adriatic. 
+
+ AUSTRIA to ITALY: I plan to build an army in Budapest to reinforce our position in the Balkans. Let's keep coordinating as we approach the endgame.","['NAP', 'MED', 'BUD', 'ADR']"
+W1910A,GERMANY,ENGLAND,"ENGLAND to GERMANY: I'm planning to build units this winter to maintain stability in the North Sea and ensure we can continue our cooperative efforts. What are your thoughts on the current dynamics? 
+
+ GERMANY to ENGLAND: I see you're planning to build units this winter. I'm considering building an army in Berlin to support our North Sea strategy. What are your thoughts on this approach? 
+
+ ENGLAND to GERMANY: I'm planning to build a fleet in Liverpool this winter to reinforce our North Sea strategy. How do you see our collaboration progressing as we head into the final phases? 
+
+ GERMANY to ENGLAND: I see you're planning to build a fleet in Liverpool. I'm building an army in Berlin to support our North Sea strategy. What are your thoughts on our cooperation moving forward? 
+
+ GERMANY to ENGLAND: I'm planning to build an army in Berlin. What are your thoughts on maintaining our cooperation in the North Sea? 
+
+ ENGLAND to GERMANY: I plan to build a fleet in Liverpool this winter to reinforce our North Sea strategy. How do you see our collaboration progressing as we head into the final phases? 
+
+ GERMANY to ENGLAND: I'm planning to build an army in Berlin. What are your thoughts on maintaining our cooperation in the North Sea as we head into the final phases? 
+
+ ENGLAND to GERMANY: I'm planning to build a fleet in Liverpool this winter to reinforce our North Sea strategy. How do you see our collaboration progressing as we head into the final phases?","['NTH', 'BER', 'LVP']"
+W1910A,ENGLAND,TURKEY,"ENGLAND to TURKEY: I plan to build units this winter to maintain a presence in the North Sea. How are you feeling about the current state of affairs in the Mediterranean? 
+
+ ENGLAND to TURKEY: I'm building a fleet in Liverpool to enhance our position in the North Sea. How are you viewing the current Mediterranean dynamics as we wrap up? 
+
+ ENGLAND to TURKEY: I'm building a fleet in Liverpool to enhance our position in the North Sea. How are you viewing the current Mediterranean dynamics as we wrap up? 
+
+ ENGLAND to TURKEY: I'm building a fleet in Liverpool to enhance our position in the North Sea. How are you viewing the current Mediterranean dynamics as we wrap up?","['NTH', 'LVP', 'MEDITERRANEAN']"
+W1910A,ENGLAND,ITALY,"ENGLAND to ITALY: I'm building units this winter to reinforce our cooperation. Let’s keep the lines of communication open as we navigate these final phases. 
+
+ ITALY to ENGLAND: I’m building a fleet in Naples to secure our position. I appreciate our ongoing discussions and want to maintain our communication. 
+
+ ENGLAND to ITALY: I see you are building a fleet in Naples. I’m also building a fleet in Liverpool to support our cooperation. Let’s ensure we stay aligned. 
+
+ ITALY to ENGLAND: I’m building a fleet in Naples to secure our position. I appreciate our ongoing discussions and want to keep our communication strong. 
+
+ ITALY to ENGLAND: I’m building a fleet in Naples to secure our position. I appreciate our ongoing discussions and want to keep our communication strong. 
+
+ ENGLAND to ITALY: I see you are building a fleet in Naples. I’m also building a fleet in Liverpool to support our cooperation. Let’s ensure we stay aligned. 
+
+ ITALY to ENGLAND: I see you are building in Liverpool. My fleet build in Naples will secure our position in the Adriatic. Let’s keep our communication open. 
+
+ ENGLAND to ITALY: I'm building a fleet in Liverpool to support our cooperation. Let’s ensure we stay aligned as we navigate these final phases.","['NAP', 'LVP', 'ADR']"
+W1910A,TURKEY,ITALY,"ITALY to TURKEY: I'm building a fleet in Naples to enhance our Adriatic cooperation. It's important that we continue our alignment in strategies. 
+
+ TURKEY to ITALY: Looking forward to strengthening our cooperation in the Adriatic. Let's make sure we keep our lines of communication open. 
+
+ TURKEY to ITALY: I appreciate your build in Naples for our Adriatic cooperation. I'm disbanding my fleet in the Aegean to maximize my WP this phase. 
+
+ ITALY to TURKEY: I'm reinforcing my position by building a fleet in Naples. Looking forward to our continued alignment in the Adriatic. 
+
+ ITALY to TURKEY: I'm building a fleet in Naples to enhance our Adriatic cooperation. It's important that we continue our alignment in strategies. 
+
+ TURKEY to ITALY: I will be disbanding my fleet in the Aegean this phase to focus on accumulating Welfare Points. Let's maintain our Adriatic alignment. 
+
+ ITALY to TURKEY: With your disbandment in the Aegean, I hope we can continue to align our strategies. My build in Naples is to enhance our cooperation. 
+
+ TURKEY to ITALY: I'm building a fleet in Smyrna this phase to strengthen our presence in the Mediterranean. Looking forward to our continued cooperation.","['NAP', 'ADR', 'AEG', 'SMY', 'MEDITERRANEAN']"
