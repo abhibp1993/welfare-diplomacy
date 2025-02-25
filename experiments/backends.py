@@ -122,6 +122,7 @@ class HuggingFaceCausalLMBackend(LanguageModelBackend):
                 prompt_tokens=estimated_tokens,
                 completion_tokens=self.max_tokens,
                 total_tokens=estimated_tokens,
+                cached_tokens=0,
             )
 
 
@@ -163,6 +164,7 @@ class OpenAIChatBackend(LanguageModelBackend):
                 prompt_tokens=usage.prompt_tokens,
                 completion_tokens=usage.completion_tokens,
                 total_tokens=usage.total_tokens,
+                cached_tokens=usage.prompt_tokens_details.cached_tokens,
             )
 
         except Exception as exc:  # pylint: disable=broad-except
@@ -223,6 +225,7 @@ class OpenAICompletionBackend(LanguageModelBackend):
                 prompt_tokens=usage.prompt_tokens,
                 completion_tokens=usage.completion_tokens,
                 total_tokens=usage.total_tokens,
+                cached_tokens=usage.prompt_tokens_details.cached_tokens,
             )
 
         except Exception as exc:  # pylint: disable=broad-except
@@ -282,6 +285,7 @@ class ClaudeCompletionBackend:
             prompt_tokens=estimated_prompt_tokens,
             completion_tokens=estimated_completion_tokens,
             total_tokens=estimated_prompt_tokens + estimated_completion_tokens,
+            cached_tokens=0,        # FIXME: Claude does not provide cached tokens. Figure out how to get this information.
         )
 
     @backoff.on_exception(

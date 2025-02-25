@@ -25,6 +25,7 @@ from data_types import (
     MessageSummaryHistory,
     PromptAblation,
 )
+from experiments import api_pricing
 from message_summarizers import (
     MessageSummarizer,
     model_name_to_message_summarizer,
@@ -607,10 +608,15 @@ def main():
         )
         if phase_completion_time_sec_avg is not None:
             game_completion_time_avg_sec_list.append(phase_completion_time_sec_avg)
+
+        # Estimate cost
+        # TODO: Implement for non-OpenAI models.
         game_cost_estimate = (  # Based on GPT-4-8K at https://openai.com/pricing
-            game_tokens_prompt_sum / 1000 * 0.03
-            + game_tokens_completion_sum / 1000 * 0.06
+            game_tokens_prompt_sum / 1e6 * api_pricing.model_price_map[wandb.config.agent_model]["input"]
+            + game_tokens_completion_sum / 1e6 * api_pricing.model_price_map[wandb.config.agent_model]["output"]
         )
+
+
         model_response_table = wandb.Table(
             columns=[
                 "phase",
@@ -1143,7 +1149,7 @@ def parse_args():
     parser.add_argument(
         "--agent_model",
         dest="agent_model",
-        default="gpt-4-0613",
+        default="gpt-4o-mini",
         help="🤖Model name to use for the agent. Can be an OpenAI Chat model, 'random', or 'manual' (see --manual_orders_path).",
     )
     parser.add_argument(
@@ -1155,7 +1161,7 @@ def parse_args():
     parser.add_argument(
         "--summarizer_model",
         dest="summarizer_model",
-        default="gpt-3.5-turbo-16k-0613",
+        default="gpt-4o-mini",
         help="✍️ Model name to use for the message summarizer. Can be an OpenAI Chat model or 'passthrough'.",
     )
     parser.add_argument(
