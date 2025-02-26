@@ -10,6 +10,8 @@ import json
 import logging
 import os
 import traceback
+import pandas as pd
+import pickle
 
 from diplomacy import Game, GamePhaseData, Message, Power
 from diplomacy.utils.export import to_saved_game_format
@@ -33,12 +35,14 @@ from message_summarizers import (
 import constants
 import utils
 
-
 logger = logging.getLogger(__name__)
 
 
 def main():
     """Simulate a game of Diplomacy with the given parameters."""
+    # Simulation log (AK)
+    sim_data = dict()
+
     # Parse args
     args = parse_args()
 
@@ -70,7 +74,9 @@ def main():
     # autolog()  # Logs OpenAI API calls to wandb
 
     utils.set_seed(wandb.config.seed)
-
+    sim_data["run-config"] = wandb.config
+    sim_data["run-id"] = wandb.run.id
+    sim_data["run-name"] = wandb.run.name
 
     if not os.path.exists(wandb.config.output_folder):
         os.makedirs(wandb.config.output_folder)
@@ -229,11 +235,24 @@ def main():
         "board/rendering_with_orders": wandb.Html(rendered_with_orders),
         "board/rendering_state": wandb.Html(rendered_with_orders),
     }
+    # AK logs
+    sim_data["board"] = {"orders": dict(), "state": dict()}
+    sim_data["board"]["state"][game.get_current_phase()] = rendered_with_orders
+    sim_data["board"]["orders"][game.get_current_phase()] = rendered_with_orders
+
     for power in game.powers.values():
         short_name = power.name[:3]
         log_object[f"score/units/{short_name}"] = len(power.units)
         log_object[f"score/welfare/{short_name}"] = power.welfare_points
         log_object[f"score/centers/{short_name}"] = len(power.centers)
+
+    # AK logs
+    sim_data["score"] = {"units": dict(), "welfare": dict(), "centers": dict()}
+    for power in game.powers.values():
+        short_name = power.name[:3]
+        sim_data["score"]["units"][short_name] = {"F1901M": len(power.units)}
+        sim_data["score"]["welfare"][short_name] = {"F1901M": power.welfare_points}
+        sim_data["score"]["centers"][short_name] = {"F1901M": len(power.centers)}
 
     welfare_list = [power.welfare_points for power in game.powers.values()]
     log_object["welfare/hist"] = wandb.Histogram(welfare_list)
@@ -304,8 +323,8 @@ def main():
             for power_name, power in powers_items:
                 # Skip no-press powers until final message round
                 if (
-                    power_name in no_press_powers
-                    and message_round < num_of_message_rounds
+                        power_name in no_press_powers
+                        and message_round < num_of_message_rounds
                 ):
                     continue
 
@@ -411,8 +430,8 @@ def main():
                         continue
                     location = word[1]
                     if (
-                        location in possible_orders
-                        and order in possible_orders[location]
+                            location in possible_orders
+                            and order in possible_orders[location]
                     ):
                         num_valid_orders += 1
                     else:
@@ -519,10 +538,29 @@ def main():
             ],
         )
 
+        # AK logs
+        df = sim_data.get("messages_table", pd.DataFrame(columns=["phase", "round", "sender", "recipient", "message"]))
+        rows = list()
+        for (phase, round, sender, recipient, message) in phase_message_history:
+            rows.append([phase, round, sender, recipient, message])
+
+            # df = pd.concat([
+            #     df,
+            #     pd.DataFrame(
+            #         [[phase, round, sender, recipient, message]],
+            #         columns=["phase", "round", "sender", "recipient", "message"]
+            #     )
+            # ])
+
+            # df.concat([phase, round, sender, recipient, message])
+
+        # sim_data["messages_table"] = df
+        sim_data["messages_table"] = pd.concat([df, pd.DataFrame(rows, columns=["phase", "round", "sender", "recipient", "message"])])
+
         # Save summaries of the message history
         if not game.no_press:
             for power_name, power in tqdm(
-                game.powers.items(), desc="✍️ Summarizing messages"
+                    game.powers.items(), desc="✍️ Summarizing messages"
             ):
                 phase_message_summary = message_summarizer.summarize(
                     AgentParams(
@@ -591,7 +629,7 @@ def main():
             else None
         )
         phase_completion_non_error_ratio = phase_num_valid_completions / (
-            phase_num_valid_completions + phase_num_completion_errors
+                phase_num_valid_completions + phase_num_completion_errors
         )
         game_completion_non_error_ratio_list.append(phase_completion_non_error_ratio)
         phase_messages_per_completion = (
@@ -612,10 +650,9 @@ def main():
         # Estimate cost
         # TODO: Implement for non-OpenAI models.
         game_cost_estimate = (  # Based on GPT-4-8K at https://openai.com/pricing
-            game_tokens_prompt_sum / 1e6 * api_pricing.model_price_map[wandb.config.agent_model]["input"]
-            + game_tokens_completion_sum / 1e6 * api_pricing.model_price_map[wandb.config.agent_model]["output"]
+                game_tokens_prompt_sum / 1e6 * api_pricing.model_price_map[wandb.config.agent_model]["input"]
+                + game_tokens_completion_sum / 1e6 * api_pricing.model_price_map[wandb.config.agent_model]["output"]
         )
-
 
         model_response_table = wandb.Table(
             columns=[
@@ -666,6 +703,105 @@ def main():
                 for power_name, message_summaries in message_summary_history.items()
             ],
         )
+
+        # AK logs
+        df = sim_data.get("msg_summary", pd.DataFrame(columns=["phase", "power", "original_messages", "summary"]))
+        rows = list()
+        for power_name, message_summaries in message_summary_history.items():
+            rows.append([message_summaries[-1].phase, power_name, "\n".join(message_summaries[-1].original_messages),
+                         message_summaries[-1].summary])
+            # sim_data["msg_summary"] = pd.concat([
+            #     df,
+            #     pd.DataFrame(
+            #         [[message_summaries[-1].phase, power_name, "\n".join(message_summaries[-1].original_messages), message_summaries[-1].summary]],
+            #         columns=["phase", "power", "original_messages", "summary"]
+            #     )
+            # ])
+
+            # df.concat([
+            #     message_summaries[-1].phase,
+            #     power_name,
+            #     "\n".join(message_summaries[-1].original_messages),
+            #     message_summaries[-1].summary
+            # ])
+
+        sim_data["msg_summary"] = pd.concat([
+            df,
+            pd.DataFrame(
+                rows,
+                columns=["phase", "power", "original_messages", "summary"]
+            )
+        ])
+
+        df = sim_data.get("llm_responses", pd.DataFrame(columns=["phase", "power", "round", "model", "reasoning", "orders",
+                                                                 "invalid_orders", "messages", "system_prompt", "user_prompt"]))
+        rows = list()
+        for power_name, response_message_round, agent_name, agent_response, invalid_orders in phase_agent_response_history:
+            rows.append([
+                phase.name,
+                power_name,
+                response_message_round,
+                agent_name,
+                agent_response.reasoning,
+                agent_response.orders,
+                invalid_orders,
+                [
+                    f"{power_name} -> {recipient}: {message}"
+                    for recipient, message in agent_response.messages.items()
+                ],
+                agent_response.system_prompt,
+                agent_response.user_prompt,
+            ])
+            # sim_data["llm_responses"] = pd.concat([
+            #     df,
+            #     pd.DataFrame(
+            #         [[
+            #         phase.name,
+            #         power_name,
+            #         response_message_round,
+            #         agent_name,
+            #         agent_response.reasoning,
+            #         agent_response.orders,
+            #         invalid_orders,
+            #         [
+            #             f"{power_name} -> {recipient}: {message}"
+            #             for recipient, message in agent_response.messages.items()
+            #         ],
+            #         agent_response.system_prompt,
+            #         agent_response.user_prompt,
+            #     ]],
+            #         columns=["phase", "power", "round", "model", "reasoning", "orders",
+            #                  "invalid_orders", "messages", "system_prompt", "user_prompt"]
+            #     )
+            # ])
+
+            # df.concat([
+            #         phase.name,
+            #         power_name,
+            #         response_message_round,
+            #         agent_name,
+            #         agent_response.reasoning,
+            #         agent_response.orders,
+            #         invalid_orders,
+            #         [
+            #             f"{power_name} -> {recipient}: {message}"
+            #             for recipient, message in agent_response.messages.items()
+            #         ],
+            #         agent_response.system_prompt,
+            #         agent_response.user_prompt,
+            #     ])
+
+        sim_data["llm_responses"] = pd.concat([
+            df,
+            pd.DataFrame(
+                rows,
+                columns=["phase", "power", "round", "model", "reasoning", "orders",
+                         "invalid_orders", "messages", "system_prompt", "user_prompt"]
+            )
+        ])
+
+        sim_data["board"]["state"][phase] = rendered_state
+        sim_data["board"]["orders"][phase] = rendered_with_orders
 
         log_object = {
             "_progress/year_fractional": utils.get_phase_fractional_years_passed(phase),
@@ -764,6 +900,10 @@ def main():
                 log_object[f"score/units/{short_name}"] = len(power.units)
                 log_object[f"score/welfare/{short_name}"] = power.welfare_points
                 log_object[f"score/centers/{short_name}"] = len(power.centers)
+
+                sim_data["score"]["units"][short_name][phase.name] = len(power.units)
+                sim_data["score"]["welfare"][short_name][phase.name] = power.welfare_points
+                sim_data["score"]["centers"][short_name][phase.name] = len(power.centers)
 
         if phase.name[-1] == "A":
             # Aggregated welfare
@@ -918,7 +1058,7 @@ def main():
             "centers_owned_ratio": sum(
                 len(power.centers) for power in game.powers.values()
             )
-            / len(game.map.scs),
+                                   / len(game.map.scs),
         }
         log_object["benchmark/competence_factors"] = wandb.Table(
             columns=["factor", "score"],
@@ -1031,8 +1171,8 @@ def main():
         # Get % done and time remaining from the progress bar
         bar_state = progress_bar_phase.format_dict
         percent_done = (
-            bar_state["n"] / bar_state["total"] if bar_state["total"] else np.NaN
-        ) * 100.0
+                           bar_state["n"] / bar_state["total"] if bar_state["total"] else np.NaN
+                       ) * 100.0
         seconds_remaining = (
             (bar_state["total"] - bar_state["n"]) / bar_state["rate"]
             if bar_state["rate"] and bar_state["total"]
@@ -1047,8 +1187,8 @@ def main():
 
         # Determine whether there have been too many completion errors to let this go on
         if (
-            game_num_completion_errors > wandb.config.max_completion_errors
-            and wandb.config.max_completion_errors > 0
+                game_num_completion_errors > wandb.config.max_completion_errors
+                and wandb.config.max_completion_errors > 0
         ):
             raise RuntimeError(
                 f"Too many completion errors ({game_num_completion_errors}/{wandb.config.max_completion_errors})! Ending game."
@@ -1063,6 +1203,22 @@ def main():
             )
         }
     )
+
+    # AK log save
+    if not os.path.exists(wandb.config.output_folder):
+        os.makedirs(wandb.config.output_folder)
+    output_id = f"{wandb.run.name}"
+    with open(os.path.join(wandb.config.output_folder, f"game-{output_id}.json"), "wb") as log_file:
+        pickle.dump(sim_data, log_file)
+
+    df = sim_data.get("messages_table")
+    df.to_csv(os.path.join(wandb.config.output_folder, f"messages-{output_id}.csv"))
+
+    df = sim_data.get("llm_responses")
+    df.to_csv(os.path.join(wandb.config.output_folder, f"llm_responses-{output_id}.csv"))
+
+    df = sim_data.get("msg_summary")
+    df.to_csv(os.path.join(wandb.config.output_folder, f"msg_summary-{output_id}.csv"))
 
     # Exporting the game to disk as well if desired
     if wandb.config.save:
