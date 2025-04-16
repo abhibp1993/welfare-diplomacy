@@ -443,7 +443,7 @@ def main():
                 valid_order_display_percent = (
                     valid_order_ratio * 100.0
                     if valid_order_ratio is not None
-                    else np.NaN
+                    else np.nan
                 )
                 if isinstance(wandb.run.mode, wandb.sdk.lib.disabled.RunDisabled):
                     utils.log_info(
@@ -1171,12 +1171,12 @@ def main():
         # Get % done and time remaining from the progress bar
         bar_state = progress_bar_phase.format_dict
         percent_done = (
-                           bar_state["n"] / bar_state["total"] if bar_state["total"] else np.NaN
+                           bar_state["n"] / bar_state["total"] if bar_state["total"] else np.nan
                        ) * 100.0
         seconds_remaining = (
             (bar_state["total"] - bar_state["n"]) / bar_state["rate"]
             if bar_state["rate"] and bar_state["total"]
-            else np.NaN
+            else np.nan
         )
         hours_remaining = seconds_remaining / 3600
 

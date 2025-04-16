@@ -248,11 +248,12 @@ class GeneralObservationTransformer:
           observation.board, dtype=np.float32)
 
     if self.actions_since_last_moves_phase:
-      initial_observation['actions_since_last_moves_phase'] = np.cast[np.int32](
+      # initial_observation['actions_since_last_moves_phase'] = np.cast[np.int32](
+      initial_observation['actions_since_last_moves_phase'] = np.asarray(
           next_state.actions_since_previous_moves_phase)
 
     if self.season:
-      initial_observation['season'] = np.cast[np.int32](
+      initial_observation['season'] = np.asarray(
           observation.season.value)
 
     if self.build_numbers:

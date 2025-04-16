@@ -202,7 +202,7 @@ def shrink_actions(
   actions = np.asarray(actions)
   if actions.size == 0:
     return actions.astype(np.int32)
-  return np.cast[np.int32](((actions >> 32) & ~0xffff) + (actions & 0xffff))
+  return np.asarray(((actions >> 32) & ~0xffff) + (actions & 0xffff), dtype=np.int32)
 
 
 def find_action_with_area(actions: Sequence[Union[Action, ActionNoIndex]],
