@@ -1,0 +1,2 @@
+WARNING:__main__:📝 Cannot log to file name=PosixPath('/mnt/e/OneDrive - The University of Texas at Austin/4- Ongoing Research/12 - Cooperative AI/0 - Code/welfare-diplomacy/experiments/logs/worldly-haze-3') is either None or already exists.
+INFO:__main__:⌛ Instantiating game standard_welfare
