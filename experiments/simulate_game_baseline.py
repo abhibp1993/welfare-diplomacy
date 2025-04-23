@@ -5,22 +5,21 @@ Language model scaffolding to play Diplomacy.
 """
 
 import argparse
-import random
-from datetime import datetime
 import json
 import logging
 import os
-import traceback
-import pandas as pd
 import pickle
+import random
+import traceback
+from datetime import datetime
 
-from diplomacy import Game, GamePhaseData, Message, Power
-from diplomacy.utils.export import to_saved_game_format
 import numpy as np
+import pandas as pd
 from tqdm import tqdm
-import wandb
-from wandb.integration.openai import autolog
 
+import constants
+import utils
+import wandb
 from agents import Agent, AgentCompletionError, model_name_to_agent
 from data_types import (
     AgentResponse,
@@ -28,13 +27,13 @@ from data_types import (
     MessageSummaryHistory,
     PromptAblation,
 )
+from diplomacy import Game, GamePhaseData, Message, Power
+from diplomacy.utils.export import to_saved_game_format
 from experiments import api_pricing
 from message_summarizers import (
     MessageSummarizer,
     model_name_to_message_summarizer,
 )
-import constants
-import utils
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +64,7 @@ def main():
     wandb.init(
         entity=args.entity,
         project=args.project,
+        name=args.run_name,
         save_code=True,
         config=vars(args),
         mode="disabled" if args.disable_wandb else "online",
@@ -557,7 +557,8 @@ def main():
             # df.concat([phase, round, sender, recipient, message])
 
         # sim_data["messages_table"] = df
-        sim_data["messages_table"] = pd.concat([df, pd.DataFrame(rows, columns=["phase", "round", "sender", "recipient", "message"])])
+        sim_data["messages_table"] = pd.concat(
+            [df, pd.DataFrame(rows, columns=["phase", "round", "sender", "recipient", "message"])])
 
         # Save summaries of the message history
         if not game.no_press:
@@ -685,7 +686,8 @@ def main():
                     agent_response.system_prompt,
                     agent_response.user_prompt,
                 ]
-                for power_name, response_message_round, agent_name, agent_response, invalid_orders in phase_agent_response_history
+                for power_name, response_message_round, agent_name, agent_response, invalid_orders in
+                phase_agent_response_history
             ],
         )
         message_summary_table = wandb.Table(
@@ -735,8 +737,9 @@ def main():
             )
         ])
 
-        df = sim_data.get("llm_responses", pd.DataFrame(columns=["phase", "power", "round", "model", "reasoning", "orders",
-                                                                 "invalid_orders", "messages", "system_prompt", "user_prompt"]))
+        df = sim_data.get("llm_responses",
+                          pd.DataFrame(columns=["phase", "power", "round", "model", "reasoning", "orders",
+                                                "invalid_orders", "messages", "system_prompt", "user_prompt"]))
         rows = list()
         for power_name, response_message_round, agent_name, agent_response, invalid_orders in phase_agent_response_history:
             rows.append([
@@ -1236,6 +1239,14 @@ def main():
             ),
         )
 
+    # Append the cost estimate to costs.txt
+    try:
+        costs_file_path = "costs.txt"
+        with open(costs_file_path, "a") as costs_file:
+            costs_file.write(f"{game_cost_estimate}\n")
+    except Exception as e:
+        utils.log_warning(logger, f"Could not write to costs file: {e}")
+
     wandb.finish(0)
 
 
@@ -1278,6 +1289,12 @@ def parse_args():
         dest="project",
         default=constants.WANDB_PROJECT,
         help="🏗️ Weights & Biases project name.",
+    )
+    parser.add_argument(
+        "--run_name",
+        dest="run_name",
+        default=None,
+        help="🏗️ Weights & Biases run name.",
     )
     parser.add_argument(
         "--disable_wandb",
