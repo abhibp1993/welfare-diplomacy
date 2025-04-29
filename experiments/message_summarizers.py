@@ -65,7 +65,7 @@ class LLMMessageSummarizer:
             or "davinci" in model_name
         ):
             self.backend = OpenAICompletionBackend(model_name)
-        elif "gpt-4" in model_name or "gpt-3.5" in model_name:
+        elif "o1-" in model_name or "gpt-4" in model_name or "gpt-3.5" in model_name:
             self.backend = OpenAIChatBackend(model_name)
         elif "claude" in model_name:
             self.backend = ClaudeCompletionBackend(model_name)

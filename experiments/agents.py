@@ -466,6 +466,7 @@ def model_name_to_agent(model_name: str, **kwargs) -> Agent:
         return ExploiterAgent(**kwargs)
     elif (
         "gpt-" in model_name
+        or "o1-" in model_name
         or "davinci-" in model_name
         or "text-" in model_name
         or "claude" in model_name

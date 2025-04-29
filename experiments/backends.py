@@ -10,7 +10,7 @@ from openai import OpenAI
 from openai import OpenAIError
 
 try:
-    client = OpenAI()
+    client = OpenAI(api_key="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")
 except OpenAIError as exc:
     print(f"OpenAI client error: {exc}. Setting client to None.")
     client = None
